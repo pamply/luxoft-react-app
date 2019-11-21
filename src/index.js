@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import './index.scss'
 import Logo from './assets/logo.png'
+import { LoginForm } from './components/login-form.js'
 
 const NavBar = () => (
   <nav
@@ -19,9 +20,7 @@ const App = () => (
     <div className="container-fluid">
       <NavBar />
       <div className="content bg-light">
-        <div className="jumbotron bg-light">
-          <h1 className="display-4">Hello, world!</h1>
-        </div>
+        <LoginForm />
       </div>
     </div>
   </>
