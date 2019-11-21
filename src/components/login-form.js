@@ -1,4 +1,5 @@
-import React from "react";
+/* eslint-disable react/no-unescaped-entities */
+import React from 'react'
 export const LoginForm = () => (
   <form>
     <div className="form-group">
@@ -27,4 +28,4 @@ export const LoginForm = () => (
       Submit
     </button>
   </form>
-);
+)
