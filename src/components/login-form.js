@@ -1,25 +1,24 @@
-/* eslint-disable react/no-unescaped-entities */
-import React from 'react'
+import React from "react";
 const users = [
   {
-    email: 'test@luxoft.com',
-    password: 'luxoft'
+    email: "test@luxoft.com",
+    password: "luxoft"
   }
-]
+];
 export class LoginForm extends React.Component {
   constructor(props) {
-    super(props)
+    super(props);
     this.state = {
-      email: '',
-      password: '',
-      message: '',
+      email: "",
+      password: "",
+      message: "",
       isSuccess: true
-    }
-    this.onChangeEmail = this.onChangeEmail.bind(this)
-    this.onChangePassword = this.onChangePassword.bind(this)
-    this.onClickSubmit = this.onClickSubmit.bind(this)
-    this.resetAlertMessage = this.resetAlertMessage.bind(this)
-    this.resetPassword = this.resetPassword.bind(this)
+    };
+    this.onChangeEmail = this.onChangeEmail.bind(this);
+    this.onChangePassword = this.onChangePassword.bind(this);
+    this.onClickSubmit = this.onClickSubmit.bind(this);
+    this.resetAlertMessage = this.resetAlertMessage.bind(this);
+    this.resetPassword = this.resetPassword.bind(this);
   }
 
   resetAlertMessage() {
