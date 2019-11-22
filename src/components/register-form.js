@@ -1,5 +1,4 @@
 import React from "react";
-import {LogStatusContext} from "./Contexts/LogStatusContext";
 
 const listOfPreferences = ["books", "music", "movies", "pets", "sports"];
 
@@ -13,47 +12,30 @@ export class RegisterForm extends React.Component {
       passwordConfirm: "",
       preferences: [],
       age: 20,
-      isMale: true
+      isMale: true,
+      isSuccess: false
     };
   }
 
   onChangeEmail = e => {
     const { value: email } = e.target;
-    this.setState(
-        {
-          email
-        },
-        () => {
-          const newClass = this.isValidEmail() ? "is-valid" : "is-invalid";
-          this.setState({ mailClassName: newClass });
-        }
-    );
+    this.setState({
+      email
+    });
   };
 
   onChangePassword = e => {
     const { value: password } = e.target;
-    this.setState(
-        {
-          password
-        },
-        () => {
-          const newClass = this.isValidPassword() ? "is-valid" : "is-invalid";
-          this.setState({ passwordClassName: newClass });
-        }
-    );
+    this.setState({
+      password
+    });
   };
 
   onChangeConfirmPassword = e => {
     const { value: passwordConfirm } = e.target;
-    this.setState(
-        {
-          passwordConfirm
-        },
-        () => {
-          const newClass = this.isValidPassword() ? "is-valid" : "is-invalid";
-          this.setState({ passwordClassName: newClass });
-        }
-    );
+    this.setState({
+      passwordConfirm
+    });
   };
 
   onChangePreference = (e, preference) => {
@@ -102,7 +84,9 @@ export class RegisterForm extends React.Component {
   }
 
   saveUser = () => {
-    this.props.history.push("/main", { email: this.state.email });
+    this.setState({
+      isSuccess: true
+    });
   };
 
   isValidEmail = () => {
@@ -144,149 +128,117 @@ export class RegisterForm extends React.Component {
   };
 
   render() {
-    const {mailClassName, passwordClassName , email ,preferences , age , isMale} = this.state;
     return (
-        <>
-          {this.state.isSuccess && (
-              <div className="alert alert-success" role="alert">
-                Successfully saved
-              </div>
-          )}
-          <form>
-            <div className="form-group">
-              <label>Email address</label>
-              <input
-                  type="email"
-                  autoComplete="on"
-                  className={`form-control ${mailClassName}`}
-                  placeholder="Enter email"
-                  value={email}
-                  onChange={this.onChangeEmail}
-              />
-              <div className="invalid-feedback">
-                Please provide a valid email.
-              </div>
-            </div>
-            <div className="form-group">
-              <label>Password</label>
-              <input
-                  type="password"
-                  autoComplete="on"
-                  className={`form-control ${passwordClassName}`}
-                  placeholder="Password"
-                  value={this.password}
-                  onChange={this.onChangePassword}
-              />
-            </div>
-            <div className="form-group">
-              <label>Confirm password</label>
-              <input
-                  type="password"
-                  autoComplete="on"
-                  className={`form-control ${passwordClassName}`}
-                  placeholder="Confirm password"
-                  value={this.passwordConfirm}
-                  onChange={this.onChangeConfirmPassword}
-              />
-            </div>
+      <>
+        {this.state.isSuccess && (
+          <div className="alert alert-success" role="alert">
+            Successfully saved
+          </div>
+        )}
+        <form>
+          <div className="form-group">
+            <label>Email address</label>
+            <input
+              type="email"
+              className={`form-control ${
+                this.isValidEmail() ? "is-valid" : "is-invalid"
+              }`}
+              placeholder="Enter email"
+              value={this.state.email}
+              onChange={this.onChangeEmail}
+            />
+            <div class="invalid-feedback">Please provide a valid email.</div>
+          </div>
+          <div className="form-group">
+            <label>Password</label>
+            <input
+              type="password"
+              className={`form-control ${
+                this.isValidPassword() ? "is-valid" : "is-invalid"
+              }`}
+              placeholder="Password"
+              value={this.password}
+              onChange={this.onChangePassword}
+            />
+          </div>
+          <div className="form-group">
+            <label>Confirm password</label>
+            <input
+              type="password"
+              className={`form-control ${
+                this.isValidPassword() ? "is-valid" : ""
+              }`}
+              placeholder="Confirm password"
+              value={this.passwordConfirm}
+              onChange={this.onChangeConfirmPassword}
+            />
+          </div>
 
-            <div className="form-group">
-              <label>Select preferences</label>
-              <br />
-              {listOfPreferences.map(preference => (
-                  <div className="form-check form-check-inline" key={preference}>
-                    <input
-                        className="form-check-input"
-                        type="checkbox"
-                        value={preference}
-                        onChange={e => this.onChangePreference(e, preference)}
-                        checked={
-                          !!preferences.find(pref => preference === pref)
-                        }
-                    />
-                    <label className="form-check-label">{preference}</label>
-                  </div>
-              ))}
-            </div>
+          <div className="form-group">
+            <label>Select preferences</label>
+            <br />
+            {listOfPreferences.map(preference => (
+              <div className="form-check form-check-inline" key={preference}>
+                <input
+                  className="form-check-input"
+                  type="checkbox"
+                  value={preference}
+                  onChange={e => this.onChangePreference(e, preference)}
+                  checked={
+                    !!this.state.preferences.find(pref => preference === pref)
+                  }
+                />
+                <label className="form-check-label">{preference}</label>
+              </div>
+            ))}
+          </div>
 
-            <div className="form-group">
-              <label>Select age</label>
-              <select
-                  onChange={this.onChangeAge}
-                  value={age}
-                  className="custom-select"
-              >
-                {this.fillAgesDropdown()}
-              </select>
-            </div>
+          <div className="form-group">
+            <label>Select age</label>
+            <select
+              onChange={this.onChangeAge}
+              value={this.state.age}
+              className="custom-select"
+            >
+              {this.fillAgesDropdown()}
+            </select>
+          </div>
 
-            <div className="form-group">
-              <label>Select gender</label>
-              <div
-                  className="custom-control custom-radio"
-                  onClick={e => this.onChangeGender(e, true)}
-              >
-                <input
-                    type="radio"
-                    className="custom-control-input"
-                    checked={isMale}
-                />
-                <label className="custom-control-label">Male</label>
-              </div>
-              <div
-                  className="custom-control custom-radio"
-                  onClick={e => this.onChangeGender(e, false)}
-              >
-                <input
-                    type="radio"
-                    className="custom-control-input"
-                    checked={!isMale}
-                />
-                <label className="custom-control-label">Female</label>
-              </div>
+          <div className="form-group">
+            <label>Select gender</label>
+            <div
+              className="custom-control custom-radio"
+              onClick={e => this.onChangeGender(e, true)}
+            >
+              <input
+                type="radio"
+                className="custom-control-input"
+                checked={this.state.isMale}
+              />
+              <label className="custom-control-label">Male</label>
             </div>
-            <div className="form-group">
-              <label>Select gender</label>
-              <div
-                  className="custom-control custom-radio"
-                  onClick={e => this.onChangeGender(e, true)}
-              >
-                <input
-                    type="radio"
-                    className="custom-control-input"
-                    checked={this.state.isMale}
-                />
-                <label className="custom-control-label">Male</label>
-              </div>
-              <div
-                  className="custom-control custom-radio"
-                  onClick={e => this.onChangeGender(e, false)}
-              >
-                <input
-                    type="radio"
-                    className="custom-control-input"
-                    checked={!this.state.isMale}
-                />
-                <label className="custom-control-label">Female</label>
-              </div>
+            <div
+              className="custom-control custom-radio"
+              onClick={e => this.onChangeGender(e, false)}
+            >
+              <input
+                type="radio"
+                className="custom-control-input"
+                checked={!this.state.isMale}
+              />
+              <label className="custom-control-label">Female</label>
             </div>
-            <LogStatusContext.Consumer>
-              {({toggleLogStatus}) => (
-                  <button
-                      disabled={!this.isValid()}
-                      onClick={()=> {
-                        this.saveUser();
-                        toggleLogStatus()
-                      }}
-                      type="button"
-                      className="btn btn-primary"
-                  >
-                    Save
-                  </button>
-              )}
-            </LogStatusContext.Consumer>
-          </form>
-        </>
+          </div>
+          <button
+            disabled={!this.isValid()}
+            onClick={this.saveUser}
+            type="button"
+            className="btn btn-primary"
+          >
+            Save
+          </button>
+        </form>
+      </>
     );
   }
 }
