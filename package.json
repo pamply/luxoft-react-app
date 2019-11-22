@@ -4,8 +4,8 @@
   "description": "Basic setup for a react app for training purposes",
   "private": true,
   "engines": {
-    "node": "^10.13.0",
-    "npm": "^6.4.1"
+    "node": "10.13.0",
+    "npm": "6.4.1"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
