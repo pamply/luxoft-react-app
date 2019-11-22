@@ -8,6 +8,7 @@ const users = [
 export class LoginForm extends React.Component {
   constructor(props) {
     super(props);
+
     this.state = {
       email: "",
       password: "",
@@ -56,19 +57,20 @@ export class LoginForm extends React.Component {
     );
 
     if (userFound !== -1) {
-      this.setState({
-        message: `Login Success, Welcome: ${email}`,
-        isSuccess: true
-      });
+      this.props.history.push("/main", { email: this.state.email });
     } else {
       this.setState({
         message: `Login Failed, Please try with different credentials`,
         isSuccess: false
       });
+      this.resetAlertMessage();
+      this.resetPassword();
     }
-    this.resetAlertMessage();
-    this.resetPassword();
   }
+
+  goToRegister = () => {
+    this.props.history.push("/register");
+  };
 
   render() {
     return (
@@ -109,6 +111,11 @@ export class LoginForm extends React.Component {
               onChange={this.onChangePassword}
               value={this.state.password}
             />
+          </div>
+          <div className="form-group">
+            <a href="#" onClick={this.goToRegister}>
+              I'm a new User
+            </a>
           </div>
           <button
             type="button"
