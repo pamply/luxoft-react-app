@@ -3,7 +3,7 @@ import ReactDOM from "react-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./index.scss";
 import Logo from "./assets/logo.png";
-import { LoginForm } from "./components/login-form.js";
+import { RegisterForm } from "./components/register-form";
 
 const NavBar = () => (
   <nav
@@ -20,7 +20,9 @@ const App = () => (
     <div className="container-fluid">
       <NavBar />
       <div className="content bg-light">
-        <LoginForm />
+        <div className="form-container">
+          <RegisterForm />
+        </div>
       </div>
     </div>
   </>
