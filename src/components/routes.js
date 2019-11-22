@@ -1,10 +1,8 @@
-/* eslint-disable react/no-children-prop */
-import { RegisterForm } from './register-form'
-import { LoginForm } from './login-form'
-import { Main } from './main'
-import { NotFound } from './not-found'
-import React from 'react'
-import { Switch, Route } from 'react-router-dom'
+import { RegisterForm } from "./register-form";
+import { LoginForm } from "./login-form";
+import { Main } from "./main";
+import React from "react";
+import { Switch, Route } from "react-router-dom";
 
 export const Routes = () => (
   <Switch>
@@ -20,6 +18,5 @@ export const Routes = () => (
       path="/register"
     />
     <Route children={props => <Main {...props} />} exact path="/main" />
-    <Route path="*"><NotFound /></Route>
   </Switch>
-)
+);

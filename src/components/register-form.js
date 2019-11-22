@@ -12,8 +12,7 @@ export class RegisterForm extends React.Component {
       passwordConfirm: "",
       preferences: [],
       age: 20,
-      isMale: true,
-      isSuccess: false
+      isMale: true
     };
   }
 
@@ -84,9 +83,7 @@ export class RegisterForm extends React.Component {
   }
 
   saveUser = () => {
-    this.setState({
-      isSuccess: true
-    });
+    this.props.history.push("/main", { email: this.state.email });
   };
 
   isValidEmail = () => {
@@ -130,11 +127,6 @@ export class RegisterForm extends React.Component {
   render() {
     return (
       <>
-        {this.state.isSuccess && (
-          <div className="alert alert-success" role="alert">
-            Successfully saved
-          </div>
-        )}
         <form>
           <div className="form-group">
             <label>Email address</label>
@@ -147,7 +139,9 @@ export class RegisterForm extends React.Component {
               value={this.state.email}
               onChange={this.onChangeEmail}
             />
-            <div class="invalid-feedback">Please provide a valid email.</div>
+            <div className="invalid-feedback">
+              Please provide a valid email.
+            </div>
           </div>
           <div className="form-group">
             <label>Password</label>
