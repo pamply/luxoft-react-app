@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 import React from 'react'
 
 const listOfPreferences = ['books', 'music', 'movies', 'pets', 'sports']
@@ -83,6 +84,7 @@ export class RegisterForm extends React.Component {
   }
 
   saveUser = () => {
+    sessionStorage.setItem('userLogged', this.state.email)
     this.props.history.push('/main', { email: this.state.email })
   };
 
