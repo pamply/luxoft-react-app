@@ -1,133 +1,133 @@
-import React from "react";
+import React from 'react'
 
-const listOfPreferences = ["books", "music", "movies", "pets", "sports"];
+const listOfPreferences = ['books', 'music', 'movies', 'pets', 'sports']
 
 export class RegisterForm extends React.Component {
-  constructor(props) {
-    super(props);
-    this.fillAgesDropdown = this.fillAgesDropdown.bind(this);
+  constructor (props) {
+    super(props)
+    this.fillAgesDropdown = this.fillAgesDropdown.bind(this)
     this.state = {
-      email: "",
-      password: "",
-      passwordConfirm: "",
+      email: '',
+      password: '',
+      passwordConfirm: '',
       preferences: [],
       age: 20,
       isMale: true,
       isSuccess: false
-    };
+    }
   }
 
   onChangeEmail = e => {
-    const { value: email } = e.target;
+    const { value: email } = e.target
     this.setState({
       email
-    });
+    })
   };
 
   onChangePassword = e => {
-    const { value: password } = e.target;
+    const { value: password } = e.target
     this.setState({
       password
-    });
+    })
   };
 
   onChangeConfirmPassword = e => {
-    const { value: passwordConfirm } = e.target;
+    const { value: passwordConfirm } = e.target
     this.setState({
       passwordConfirm
-    });
+    })
   };
 
   onChangePreference = (e, preference) => {
-    const { checked } = e.target;
+    const { checked } = e.target
     if (checked) {
       this.setState(currState => {
-        currState.preferences.push(preference);
+        currState.preferences.push(preference)
         return {
           preferences: currState.preferences
-        };
-      });
+        }
+      })
     } else {
       this.setState(currState => {
         const idx = currState.preferences.findIndex(
           pref => pref === preference
-        );
-        currState.preferences.splice(idx, 1);
+        )
+        currState.preferences.splice(idx, 1)
         return {
           preferences: currState.preferences
-        };
-      });
+        }
+      })
     }
   };
 
   onChangeAge = e => {
-    const { value: age } = e.target;
-    this.setState({ age });
+    const { value: age } = e.target
+    this.setState({ age })
   };
 
   onChangeGender = (_, isMale) => {
     this.setState({
       isMale
-    });
+    })
   };
 
-  fillAgesDropdown() {
-    const options = [];
+  fillAgesDropdown () {
+    const options = []
     for (let i = 18; i < 100; i++) {
       options.push(
         <option key={i} value={i}>
           {i}
         </option>
-      );
+      )
     }
-    return options;
+    return options
   }
 
   saveUser = () => {
     this.setState({
       isSuccess: true
-    });
+    })
   };
 
   isValidEmail = () => {
-    const { email } = this.state;
-    const emailParts = email.split("@");
+    const { email } = this.state
+    const emailParts = email.split('@')
     if (
       emailParts.length !== 2 ||
-      emailParts[0] === "" ||
-      emailParts[1] === ""
+      emailParts[0] === '' ||
+      emailParts[1] === ''
     ) {
-      return false;
+      return false
     }
-    return true;
+    return true
   };
 
   isValidPassword = () => {
-    const { password, passwordConfirm } = this.state;
-    if (password === "") {
-      return false;
+    const { password, passwordConfirm } = this.state
+    if (password === '') {
+      return false
     }
     if (password !== passwordConfirm) {
-      return false;
+      return false
     }
-    return true;
+    return true
   };
 
   isValidPreferences = () => {
-    const { preferences } = this.state;
+    const { preferences } = this.state
     if (preferences.length === 0) {
-      return false;
+      return false
     }
-    return true;
+    return true
   };
 
   isValid = () => {
     return (
       this.isValidEmail() && this.isValidPassword() && this.isValidPreferences()
-    );
+    )
   };
 
-  render() {
+  render () {
     return (
       <>
         {this.state.isSuccess && (
@@ -141,20 +141,20 @@ export class RegisterForm extends React.Component {
             <input
               type="email"
               className={`form-control ${
-                this.isValidEmail() ? "is-valid" : "is-invalid"
+                this.isValidEmail() ? 'is-valid' : 'is-invalid'
                 }`}
               placeholder="Enter email"
               value={this.state.email}
               onChange={this.onChangeEmail}
             />
-            <div class="invalid-feedback">Please provide a valid email.</div>
+            <div className="invalid-feedback">Please provide a valid email.</div>
           </div>
           <div className="form-group">
             <label>Password</label>
             <input
               type="password"
               className={`form-control ${
-                this.isValidPassword() ? "is-valid" : "is-invalid"
+                this.isValidPassword() ? 'is-valid' : 'is-invalid'
                 }`}
               placeholder="Password"
               value={this.password}
@@ -166,7 +166,7 @@ export class RegisterForm extends React.Component {
             <input
               type="password"
               className={`form-control ${
-                this.isValidPassword() ? "is-valid" : ""
+                this.isValidPassword() ? 'is-valid' : ''
                 }`}
               placeholder="Confirm password"
               value={this.passwordConfirm}
@@ -239,6 +239,6 @@ export class RegisterForm extends React.Component {
           </button>
         </form>
       </>
-    );
+    )
   }
 }
