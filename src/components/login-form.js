@@ -59,7 +59,7 @@ export class LoginForm extends React.Component {
     )
 
     if (userFound !== -1) {
-      // this.props.history.push('/main', { email: this.state.email })
+      this.props.history.push('/main', { email: this.state.email })
     } else {
       this.setState({
         message: 'Login Failed, Please try with different credentials',
