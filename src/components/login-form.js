@@ -1,4 +1,5 @@
 /* eslint-disable react/no-unescaped-entities */
+import { Link } from 'react-router-dom'
 import React from 'react'
 const users = [
   {
@@ -58,7 +59,7 @@ export class LoginForm extends React.Component {
     )
 
     if (userFound !== -1) {
-      this.props.history.push('/main', { email: this.state.email })
+      // this.props.history.push('/main', { email: this.state.email })
     } else {
       this.setState({
         message: 'Login Failed, Please try with different credentials',
@@ -68,10 +69,6 @@ export class LoginForm extends React.Component {
       this.resetPassword()
     }
   }
-
-  goToRegister = () => {
-    this.props.history.push('/register')
-  };
 
   render () {
     return (
@@ -114,9 +111,7 @@ export class LoginForm extends React.Component {
             />
           </div>
           <div className="form-group">
-            <a href="#" onClick={this.goToRegister}>
-              I'm a new User
-            </a>
+            <Link to='/register' >I'm a new User</Link>
           </div>
           <button
             type="button"
