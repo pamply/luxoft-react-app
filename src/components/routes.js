@@ -12,11 +12,6 @@ export const Routes = () => (
       exact
       path="/register"
     />
-    <Route
-      children={props => <RegisterForm {...props} />}
-      exact
-      path="/register"
-    />
     <Route children={props => <Main {...props} />} exact path="/main" />
   </Switch>
 );
