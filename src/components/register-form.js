@@ -32,8 +32,9 @@ export class RegisterForm extends React.Component {
   }
 
   onChangeInputText = e => {
+    const { target } = e;
     this.setState({
-      [e.target.id]: e.target.value,
+      [target.id]: target.value,
     });
   }
 
@@ -89,33 +90,21 @@ export class RegisterForm extends React.Component {
   isValidEmail = () => {
     const { email } = this.state
     const emailParts = email.split('@')
-    if (
+    return !(
       emailParts.length !== 2 ||
       emailParts[0] === '' ||
       emailParts[1] === ''
-    ) {
-      return false
-    }
-    return true
+    )
   };
 
   isValidPassword = () => {
-    const { password, passwordConfirm } = this.state
-    if (password === '') {
-      return false
-    }
-    if (password !== passwordConfirm) {
-      return false
-    }
-    return true
+    const { password, passwordConfirm } = this.state;
+    return !(password === '' || password !== passwordConfirm);
   };
 
   isValidPreferences = () => {
     const { preferences } = this.state
-    if (preferences.length === 0) {
-      return false
-    }
-    return true
+    return preferences.length !== 0;
   };
 
   isValid = () =>
@@ -125,17 +114,54 @@ export class RegisterForm extends React.Component {
     return (
       <>
         <form>
-          <Input type="email" id="email" value={this.state.email} placeholder="Enter email" label="Email address"
-            onChangeInputText={this.onChangeInputText} validation={this.isValidEmail} toggleError={this.state.touched.email} onBlur={this.handleBlur}
+          <Input
+            type="email"
+            id="email"
+            value={this.state.email}
+            placeholder="Enter email"
+            label="Email address"
+            onChangeInputText={this.onChangeInputText}
+            validation={this.isValidEmail}
+            toggleError={this.state.touched.email}
+            onBlur={this.handleBlur}
             errorText="Please provide a valid email." />
-          <Input type="password" id="password" value={this.state.password} placeholder="Password" toggleError={this.state.touched.password} label="Password"
-            onChangeInputText={this.onChangeInputText} validation={this.isValidPassword} onBlur={this.handleBlur} />
-          <Input type="password" id="passwordConfirm" value={this.state.passwordConfirm} toggleError
-            ={this.state.touched.passwordConfirm} placeholder="Password" label="Confirm Password"
-            onChangeInputText={this.onChangeInputText} validation={this.isValidPassword} onBlur={this.handleBlur} />
-          <Checkbox label="Select preferences" onChange={this.onChangePreference} selectedElements={this.state.preferences} listOfElements={listOfPreferences} id="preferences" />
-          <Select onChange={this.onChangeInputText} value={this.state.age} fillDropdown={this.fillAgesDropdown} id="age" />
-          <BinaryCheckRadio onChange={this.onChangeGender} opt1="Male" opt2="Female" type="radio" label="Select gender" status={this.state.isMale} />
+          <Input
+            type="password"
+            id="password"
+            value={this.state.password}
+            placeholder="Password"
+            toggleError={this.state.touched.password}
+            label="Password"
+            onChangeInputText={this.onChangeInputText}
+            validation={this.isValidPassword}
+            onBlur={this.handleBlur} />
+          <Input
+            type="password"
+            id="passwordConfirm"
+            value={this.state.passwordConfirm}
+            toggleError={this.state.touched.passwordConfirm}
+            placeholder="Password" label="Confirm Password"
+            onChangeInputText={this.onChangeInputText}
+            validation={this.isValidPassword}
+            onBlur={this.handleBlur} />
+          <Checkbox
+            label="Select preferences"
+            onChange={this.onChangePreference}
+            selectedElements={this.state.preferences}
+            listOfElements={listOfPreferences}
+            id="preferences" />
+          <Select
+            onChange={this.onChangeInputText}
+            value={this.state.age}
+            fillDropdown={this.fillAgesDropdown}
+            id="age" />
+          <BinaryCheckRadio
+            onChange={this.onChangeGender}
+            opt1="Male"
+            opt2="Female"
+            type="radio"
+            label="Select gender"
+            status={this.state.isMale} />
           <button
             disabled={!this.isValid()}
             onClick={this.saveUser}
@@ -143,6 +169,13 @@ export class RegisterForm extends React.Component {
             className="btn btn-primary"
           >
             Save
+          </button>
+          <button style={{ marginLeft: "10px" }}
+            onClick={() => this.props.history.push('/')}
+            type="button"
+            className="btn btn-secondary"
+          >
+            Back
           </button>
         </form>
       </>

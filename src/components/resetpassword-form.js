@@ -18,8 +18,9 @@ export class ResetPassword extends React.Component {
   }
 
   onChangeInputText = e => {
+    const { target } = e;
     this.setState({
-      [e.target.id]: e.target.value,
+      [target.id]: [target.value],
     });
   }
 
@@ -31,19 +32,14 @@ export class ResetPassword extends React.Component {
 
   isValidPassword = () => {
     const { password, passwordConfirm } = this.state;
-    if (password === "") {
-      return false;
-    }
-    if (password !== passwordConfirm) {
-      return false;
-    }
-    return true;
+    return !(password === "" || password !== passwordConfirm);
   };
 
-  isValidCurrentPassword = () => this.state.currentPassword == window.$password
+  isValidCurrentPassword = () =>
+    this.state.currentPassword == window.$password
 
-  isValid = () => this.isValidPassword() && this.isValidCurrentPassword()
-
+  isValid = () =>
+    this.isValidPassword() && this.isValidCurrentPassword()
 
   savePassword = () => {
     window.$password = this.state.password
@@ -52,13 +48,35 @@ export class ResetPassword extends React.Component {
 
   render = () => (
     <form>
-      <Input type="password" id="currentPassword" value={this.state.currentPassword} placeholder="Current Password" toggleError={this.state.touched.currentPassword} label="Password"
-        onChangeInputText={this.onChangeInputText} validation={this.isValidCurrentPassword} onBlur={this.handleBlur} />
-      <Input type="password" id="password" value={this.state.password} placeholder="New Password" toggleError={this.state.touched.password} label="Password"
-        onChangeInputText={this.onChangeInputText} validation={this.isValidPassword} onBlur={this.handleBlur} />
-      <Input type="password" id="passwordConfirm" value={this.state.passwordConfirm} toggleError
-        ={this.state.touched.passwordConfirm} placeholder="Password" label="Confirm Password"
-        onChangeInputText={this.onChangeInputText} validation={this.isValidPassword} onBlur={this.handleBlur} />
+      <Input
+        type="password"
+        id="currentPassword"
+        value={this.state.currentPassword}
+        placeholder="Current Password"
+        toggleError={this.state.touched.currentPassword}
+        label="Password"
+        onChangeInputText={this.onChangeInputText}
+        validation={this.isValidCurrentPassword}
+        onBlur={this.handleBlur} />
+      <Input
+        type="password"
+        id="password"
+        value={this.state.password}
+        placeholder="New Password"
+        toggleError={this.state.touched.password}
+        label="Password"
+        onChangeInputText={this.onChangeInputText}
+        validation={this.isValidPassword}
+        onBlur={this.handleBlur} />
+      <Input type="password"
+        id="passwordConfirm"
+        value={this.state.passwordConfirm}
+        toggleError={this.state.touched.passwordConfirm}
+        placeholder="Password"
+        label="Confirm Password"
+        onChangeInputText={this.onChangeInputText}
+        validation={this.isValidPassword}
+        onBlur={this.handleBlur} />
       <button
         disabled={!this.isValid()}
         onClick={this.savePassword}

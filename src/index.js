@@ -7,9 +7,11 @@ import { BrowserRouter as Router } from 'react-router-dom'
 
 const App = () => {
   window.$password = 'luxoft';
-  return (<Router>
-    <Layout />
-  </Router >);
+  return (
+    <Router>
+      <Layout />
+    </Router >
+  );
 }
 
 ReactDOM.render(<App />, document.querySelector('#app'))

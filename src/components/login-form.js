@@ -80,11 +80,28 @@ export class LoginForm extends React.Component {
               </div>
             ))}
         <form>
-          <Input type="email" id="email" value={this.state.email} placeholder="Enter email" label="Email address"
-            onChangeInputText={this.onChangeInputText} validation={() => { }} toggleError={this.state.touched.email} onBlur={() => { }}
-            helpText="Please provide a valid email." helpText2="We'll never share your email with anyone else." />
-          <Input type="password" id="password" value={this.state.password} placeholder="Password" toggleError={this.state.touched.password} label="Password"
-            onChangeInputText={this.onChangeInputText} validation={() => { }} onBlur={() => { }} />
+          <Input
+            type="email"
+            id="email"
+            value={this.state.email}
+            placeholder="Enter email"
+            label="Email address"
+            onChangeInputText={this.onChangeInputText}
+            validation={() => { }}
+            toggleError={this.state.touched.email}
+            onBlur={() => { }}
+            helpText="Please provide a valid email."
+            helpText2="We'll never share your email with anyone else." />
+          <Input
+            type="password"
+            id="password"
+            value={this.state.password}
+            placeholder="Password"
+            toggleError={this.state.touched.password}
+            label="Password"
+            onChangeInputText={this.onChangeInputText}
+            validation={() => { }}
+            onBlur={() => { }} />
           <div className="form-group">
             <Link to='/register' >I'm a new User</Link>
           </div>

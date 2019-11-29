@@ -5,6 +5,8 @@ import { Main } from './main'
 import { NotFound } from './not-found'
 import React from 'react'
 import { Switch, Route } from 'react-router-dom'
+import { SecretSanta } from './secret-santa'
+import { ResetPassword } from './resetpassword-form'
 
 export const Routes = () => (
   <Switch>
