@@ -1,15 +1,8 @@
 .navbar-expand-lg {
-    background-color: #243387;
-    .navbar-btn {
-        font-size: 36px;
-        line-height: 1.3;
+    .logout-btn {
+        font-size: 20px;
         color: whitesmoke;
-        align-self: flex-end;
         letter-spacing: 0.5px;
-
-        &.log-out {
-            line-height: 1.4;
-        }
     }
 }
 

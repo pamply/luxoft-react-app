@@ -13,10 +13,5 @@ body {
 }
 
 .hidden {
-    opacity: 0;
-    pointer-events: none;
-}
-
-.bg-light {
-    min-height: 500px;
+    display: none;
 }
