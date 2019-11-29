@@ -16,9 +16,6 @@ const NavBar = () => (
           window.location.href.includes("main")) ? (<li className="nav-item ">
             <Link to={'/'}>Logout</Link>
           </li>) : ''
-          <li className="nav-item ">
-            <Link to={'/'}>Logout</Link>
-          </li>
         }
         <li className="nav-item " style={{ marginLeft: "15px" }}>
           <Link to={'/secret-santa'}> Secret Santa</Link>
