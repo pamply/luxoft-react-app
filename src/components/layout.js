@@ -3,14 +3,14 @@ import {Routes} from "./routes";
 import { NavBar } from "./Contexts/navbar";
 import {LogProvider} from "./Contexts/LogStatusContext";
 
-export const Layout = props => (
+export const Layout = () => (
 
     <div className="container-fluid">
         <LogProvider>
-            <NavBar  />
+            <NavBar />
             <div className="content bg-light">
                 <div className="form-container">
-                    <Routes {...props} />
+                    <Routes />
                 </div>
             </div>
         </LogProvider>
