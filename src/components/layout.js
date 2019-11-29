@@ -1,6 +1,8 @@
 import Logo from '../assets/logo.png'
 import React from 'react'
 import { Routes } from './routes'
+import { Link } from 'react-router-dom'
+
 const NavBar = () => (
   <nav
     className="navbar navbar-expand-lg navbar"
@@ -9,6 +11,9 @@ const NavBar = () => (
     <a className="navbar-brand" href="#">
       <img src={Logo} height="50" alt="" />
     </a>
+    <div style={{ margin: "auto 3rem auto auto", color: '#FFFFFF' }}>
+      <Link to='/'>Log out</Link>
+    </div>
   </nav>
 )
 

@@ -8,7 +8,7 @@ const users = [
   }
 ]
 export class LoginForm extends React.Component {
-  constructor (props) {
+  constructor(props) {
     super(props)
 
     this.state = {
@@ -24,7 +24,7 @@ export class LoginForm extends React.Component {
     this.resetPassword = this.resetPassword.bind(this)
   }
 
-  resetAlertMessage () {
+  resetAlertMessage() {
     setTimeout(() => {
       this.setState({
         message: ''
@@ -32,27 +32,27 @@ export class LoginForm extends React.Component {
     }, 1000)
   }
 
-  resetPassword () {
+  resetPassword() {
     this.setState({
       password: ''
     })
   }
 
-  onChangeEmail (e) {
+  onChangeEmail(e) {
     const { value: email } = e.target
     this.setState({
       email
     })
   }
 
-  onChangePassword (e) {
+  onChangePassword(e) {
     const { value: password } = e.target
     this.setState({
       password
     })
   }
 
-  onClickSubmit () {
+  onClickSubmit() {
     const { email, password } = this.state
     const userFound = users.findIndex(
       user => user.email === email && user.password === password
@@ -70,7 +70,7 @@ export class LoginForm extends React.Component {
     }
   }
 
-  render () {
+  render() {
     return (
       <>
         {this.state.message &&
@@ -79,10 +79,10 @@ export class LoginForm extends React.Component {
               {this.state.message}
             </div>
           ) : (
-            <div className="alert alert-danger" role="alert">
-              {this.state.message}
-            </div>
-          ))}
+              <div className="alert alert-danger" role="alert">
+                {this.state.message}
+              </div>
+            ))}
         <form>
           <div className="form-group">
             <label htmlFor="exampleInputEmail1">Email address</label>
