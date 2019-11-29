@@ -1,0 +1,14 @@
+.about-section {
+    .header {
+        margin-bottom: 35px;
+
+        &:nth-child(n+2) {
+            margin-top: 15px;
+        }
+    }
+
+
+    .gnral-info {
+        text-align: justify;
+    }
+}
