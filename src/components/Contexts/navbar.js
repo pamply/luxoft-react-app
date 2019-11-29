@@ -9,8 +9,12 @@ export const NavBar = () => (
                 <a className="navbar-brand" href="/">
                     <img src={Logo} height="50" alt=""/>
                 </a>
+                <a
+                   href="/about" className="navbar-btn">
+                    About
+                </a>
                 <a onClick={toggleLogStatus}
-                   href="/" className={`logout-btn ${status ? "" : "hidden"}`}>
+                   href="/" className={`navbar-btn log-out ${status ? "" : "hidden"}`}>
                     Log out
                 </a>
             </nav>
