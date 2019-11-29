@@ -1,6 +1,6 @@
 import React from "react";
 import {Routes} from "./routes";
-import { NavBar } from "./Contexts/navbar";
+import { NavBar } from "./navbar";
 import {LogProvider} from "./Contexts/LogStatusContext";
 
 export const Layout = () => (
