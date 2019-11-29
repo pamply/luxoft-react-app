@@ -19,6 +19,16 @@ export const Routes = () => (
       exact
       path="/register"
     />
+    <Route
+      children={props => <ResetPassword {...props} />}
+      exact
+      path="/reset"
+    />
+    <Route
+      children={props => <SecretSanta {...props} />}
+      exact
+      path="/secret-santa"
+    />
     <Route children={props => <Main {...props} />} exact path="/main" />
     <Route path="*"><NotFound /></Route>
   </Switch>

@@ -1,30 +1,34 @@
 /* eslint-disable react/no-unescaped-entities */
 import { Link } from 'react-router-dom'
 import React from 'react'
+import { Input } from "./shared/input"
+
 const users = [
   {
-    email: 'test@luxoft.com',
-    password: 'luxoft'
+    email: 'test@luxoft.com'
   }
 ]
 export class LoginForm extends React.Component {
-  constructor (props) {
+  constructor(props) {
     super(props)
 
     this.state = {
-      email: '',
-      password: '',
-      message: '',
-      isSuccess: true
-    }
-    this.onChangeEmail = this.onChangeEmail.bind(this)
-    this.onChangePassword = this.onChangePassword.bind(this)
+      email: "",
+      password: "",
+      message: "",
+      isSuccess: true,
+      touched: {
+        email: false,
+        password: false,
+      }
+    };
+    this.onChangeInputText = this.onChangeInputText.bind(this);
     this.onClickSubmit = this.onClickSubmit.bind(this)
     this.resetAlertMessage = this.resetAlertMessage.bind(this)
     this.resetPassword = this.resetPassword.bind(this)
   }
 
-  resetAlertMessage () {
+  resetAlertMessage() {
     setTimeout(() => {
       this.setState({
         message: ''
@@ -32,30 +36,22 @@ export class LoginForm extends React.Component {
     }, 1000)
   }
 
-  resetPassword () {
+  resetPassword() {
     this.setState({
       password: ''
     })
   }
 
-  onChangeEmail (e) {
-    const { value: email } = e.target
+  onChangeInputText(e) {
     this.setState({
-      email
-    })
+      [e.target.id]: e.target.value
+    });
   }
 
-  onChangePassword (e) {
-    const { value: password } = e.target
-    this.setState({
-      password
-    })
-  }
-
-  onClickSubmit () {
+  onClickSubmit() {
     const { email, password } = this.state
     const userFound = users.findIndex(
-      user => user.email === email && user.password === password
+      user => user.email === email && window.$password === password
     )
 
     if (userFound !== -1) {
@@ -70,7 +66,7 @@ export class LoginForm extends React.Component {
     }
   }
 
-  render () {
+  render() {
     return (
       <>
         {this.state.message &&
@@ -79,37 +75,16 @@ export class LoginForm extends React.Component {
               {this.state.message}
             </div>
           ) : (
-            <div className="alert alert-danger" role="alert">
-              {this.state.message}
-            </div>
-          ))}
+              <div className="alert alert-danger" role="alert">
+                {this.state.message}
+              </div>
+            ))}
         <form>
-          <div className="form-group">
-            <label htmlFor="exampleInputEmail1">Email address</label>
-            <input
-              type="email"
-              className="form-control"
-              id="exampleInputEmail1"
-              aria-describedby="emailHelp"
-              placeholder="Enter email"
-              onChange={this.onChangeEmail}
-              value={this.state.email}
-            />
-            <small id="emailHelp" className="form-text text-muted">
-              We'll never share your email with anyone else.
-            </small>
-          </div>
-          <div className="form-group">
-            <label htmlFor="exampleInputPassword1">Password</label>
-            <input
-              type="password"
-              className="form-control"
-              id="exampleInputPassword1"
-              placeholder="Password"
-              onChange={this.onChangePassword}
-              value={this.state.password}
-            />
-          </div>
+          <Input type="email" id="email" value={this.state.email} placeholder="Enter email" label="Email address"
+            onChangeInputText={this.onChangeInputText} validation={() => { }} toggleError={this.state.touched.email} onBlur={() => { }}
+            helpText="Please provide a valid email." helpText2="We'll never share your email with anyone else." />
+          <Input type="password" id="password" value={this.state.password} placeholder="Password" toggleError={this.state.touched.password} label="Password"
+            onChangeInputText={this.onChangeInputText} validation={() => { }} onBlur={() => { }} />
           <div className="form-group">
             <Link to='/register' >I'm a new User</Link>
           </div>
