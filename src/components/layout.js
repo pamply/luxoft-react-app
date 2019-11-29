@@ -8,7 +8,7 @@ const NavBar = () => (
     style={{ backgroundColor: '#243387', color: "#FFFFFF" }}
   >
     <a className="navbar-brand" href="#">
-      {/*<img src={Logo} height="50" alt="" />*/}
+      <img src={Logo} height="50" alt="" />
     </a>
     <div className="collapse navbar-collapse pull-right" id="navbarSupportedContent">
       <ul className="navbar-nav mr-auto">
