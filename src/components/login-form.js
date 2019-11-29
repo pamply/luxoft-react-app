@@ -74,7 +74,7 @@ export class LoginForm extends React.Component {
 
   render() {
     return (
-      <>
+      <section className="login-form">
         {this.state.message &&
           (this.state.isSuccess ? (
             <div className="alert alert-success" role="alert">
@@ -112,9 +112,12 @@ export class LoginForm extends React.Component {
               value={this.state.password}
             />
           </div>
-          <div className="form-group">
-            <a href="#" onClick={this.goToRegister}>
+          <div className="form-group d-flex justify-content-around">
+            <a href="/register" onClick={this.goToRegister}>
               I'm a new User
+            </a>
+            <a href="/reset-password" onClick={this.goToRegister}>
+              Reset password
             </a>
           </div>
           <button
@@ -125,7 +128,7 @@ export class LoginForm extends React.Component {
             Submit
           </button>
         </form>
-      </>
+      </section>
     );
   }
 }
