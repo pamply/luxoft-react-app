@@ -3,14 +3,17 @@ import React from "react";
 export const Main = props => {
     let welcomeMsg;
 
-    try {
-        const {email} = props.history.location.state;
-        welcomeMsg = `Hello ${email}`
-    } catch (e) {
-        if (e instanceof TypeError) {
+    if (props.history) {
+        if (props.history.location.state) {
+            const { email } = props.history.location.state;
+            welcomeMsg = `Hello ${email}`
+        } else {
             welcomeMsg = "Please log in or create a new account"
         }
     }
-
     return <div>{welcomeMsg}</div>;
 };
+
+
+
+
