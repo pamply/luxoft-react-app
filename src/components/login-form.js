@@ -68,8 +68,8 @@ export class LoginForm extends React.Component {
     }
   }
 
-  goToRegister = () => {
-    this.props.history.push("/register");
+  goToUrl = targetUrl => {
+    this.props.history.push(targetUrl);
   };
 
   render() {
@@ -113,10 +113,10 @@ export class LoginForm extends React.Component {
             />
           </div>
           <div className="form-group d-flex justify-content-around">
-            <a href="/register" onClick={this.goToRegister}>
+            <a href="#" onClick={()=>{this.goToUrl("/register")}}>
               I'm a new User
             </a>
-            <a href="/reset-password" onClick={this.goToRegister}>
+            <a href="#" onClick={()=>{this.goToUrl("/reset-password")}}>
               Reset password
             </a>
           </div>
