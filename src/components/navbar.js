@@ -10,7 +10,7 @@ export const NavBar = () => (
                 <Link className="navbar-brand" to="/">
                     <img src={Logo} height="50" alt=""/>
                 </Link>
-                <Link to="/about" className="navbar-btn">
+                <Link to="/about" className={`navbar-btn ${status ? "" : "hidden"}`}>
                     About
                 </Link>
                 <Link onClick={toggleLogStatus}
