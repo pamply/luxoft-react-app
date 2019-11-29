@@ -13,7 +13,9 @@ const NavBar = () => (
     <div className="collapse navbar-collapse pull-right" id="navbarSupportedContent">
       <ul className="navbar-nav mr-auto">
         {(
-          !window.location.href.includes("main")) ? "" :
+          window.location.href.includes("main")) ? (<li className="nav-item ">
+            <Link to={'/'}>Logout</Link>
+          </li>) : ''
           <li className="nav-item ">
             <Link to={'/'}>Logout</Link>
           </li>
