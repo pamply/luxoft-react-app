@@ -1,4 +1,6 @@
 import React from "react";
+import {Link} from "react-router-dom";
+
 const users = [
   {
     email: "test@luxoft.com",
@@ -68,10 +70,6 @@ export class LoginForm extends React.Component {
     }
   }
 
-  goToUrl = targetUrl => {
-    this.props.history.push(targetUrl);
-  };
-
   render() {
     return (
       <section className="login-form">
@@ -113,12 +111,12 @@ export class LoginForm extends React.Component {
             />
           </div>
           <div className="form-group d-flex justify-content-around">
-            <a href="#" onClick={()=>{this.goToUrl("/register")}}>
+            <Link to="/register">
               I'm a new User
-            </a>
-            <a href="#" onClick={()=>{this.goToUrl("/reset-password")}}>
+            </Link>
+            <Link to="/reset-password">
               Reset password
-            </a>
+            </Link>
           </div>
           <button
             type="button"
