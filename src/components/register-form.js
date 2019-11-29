@@ -157,8 +157,8 @@ export class RegisterForm extends React.Component {
             id="age" />
           <BinaryCheckRadio
             onChange={this.onChangeGender}
-            opt1="Male"
-            opt2="Female"
+            option1="Male"
+            option2="Female"
             type="radio"
             label="Select gender"
             status={this.state.isMale} />

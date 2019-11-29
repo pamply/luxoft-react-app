@@ -1,7 +1,7 @@
 import React from "react";
 
 export const BinaryCheckRadio = (props) => {
-  const { label, opt1, opt2, onChange, type, status } = props;
+  const { label, option1, option2, onChange, type, status } = props;
   return (
     <div className="form-group">
       <label>{label}</label>
@@ -14,7 +14,7 @@ export const BinaryCheckRadio = (props) => {
           className="custom-control-input"
           checked={status}
         />
-        <label className="custom-control-label">{opt1}</label>
+        <label className="custom-control-label">{option1}</label>
       </div>
       <div
         className="custom-control custom-radio"
@@ -25,7 +25,7 @@ export const BinaryCheckRadio = (props) => {
           className="custom-control-input"
           checked={!status}
         />
-        <label className="custom-control-label">{opt2}</label>
+        <label className="custom-control-label">{option2}</label>
       </div>
     </div>
   );
