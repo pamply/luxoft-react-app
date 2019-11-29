@@ -1,4 +1,5 @@
 import React from "react";
+import {LogStatusContext} from "./Contexts/LogStatusContext";
 
 const listOfPreferences = ["books", "music", "movies", "pets", "sports"];
 
@@ -223,14 +224,21 @@ export class RegisterForm extends React.Component {
               <label className="custom-control-label">Female</label>
             </div>
           </div>
-          <button
-            disabled={!this.isValid()}
-            onClick={this.saveUser}
-            type="button"
-            className="btn btn-primary"
-          >
-            Save
-          </button>
+          <LogStatusContext.Consumer>
+            {({toggleLogStatus}) => (
+                <button
+                    disabled={!this.isValid()}
+                    onClick={()=> {
+                      this.saveUser();
+                      toggleLogStatus()
+                    }}
+                    type="button"
+                    className="btn btn-primary"
+                >
+                  Save
+                </button>
+            )}
+          </LogStatusContext.Consumer>
         </form>
       </>
     );
