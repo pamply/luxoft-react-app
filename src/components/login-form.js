@@ -75,6 +75,7 @@ export class LoginForm extends React.Component {
   render() {
     return (
       <>
+        <h1>Login</h1>
         {this.state.message &&
           (this.state.isSuccess ? (
             <div className="alert alert-success" role="alert">
