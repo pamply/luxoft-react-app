@@ -111,6 +111,9 @@ export class LoginForm extends React.Component {
             />
           </div>
           <div className="form-group">
+            <Link to='/reset-password' >Change password</Link>
+          </div>
+          <div className="form-group">
             <Link to='/register' >I'm a new User</Link>
           </div>
           <button

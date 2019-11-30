@@ -11,8 +11,9 @@ const NavBar = () => (
     <a className="navbar-brand" href="#">
       <img src={Logo} height="50" alt="" />
     </a>
-    <div style={{ margin: "auto 3rem auto auto", color: '#FFFFFF' }}>
-      <Link to='/'>Log out</Link>
+    <div class="container">
+      <Link to='/about'>About</Link>
+      <Link to='/'>Logout</Link>
     </div>
   </nav>
 )
