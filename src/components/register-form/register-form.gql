@@ -1,3 +1,5 @@
 mutation registerUser($newUser: NewUserInput) {
-	registerUser(newUser: $newUser)
+	registerUser(newUser: $newUser) {
+		email
+	}
 }

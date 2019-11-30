@@ -97,8 +97,8 @@ export class RegisterForm extends React.Component {
     }
     const data = await fetchGraphql(query, variables)
     const { registerUser } = data;
-    if (registerUser) {
-      this.props.history.push('/main', { email: this.state.email });
+    if (registerUser.email) {
+      this.props.history.push('/main', { email: registerUser.email });
     }
   };
 
