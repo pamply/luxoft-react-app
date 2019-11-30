@@ -12,7 +12,6 @@ export const NavBar = props => (
       <a className="navbar-brand" href="#">
         <img src={Logo} height="50" alt="" />
       </a>
-      {console.log(props)}
       {(props.history.location.state) ?
         <Link to="/">
           <h6 className="logout-button-navbar mt-3 mr-3">Logout</h6>
