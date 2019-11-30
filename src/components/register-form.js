@@ -83,8 +83,34 @@ export class RegisterForm extends React.Component {
     return options
   }
 
-  saveUser = () => {
-    this.props.history.push('/main', { email: this.state.email })
+  saveUser = async () => {
+    const query = `mutation registerUser($newUser: NewUserInput) {
+      registerUser(newUser: $newUser)
+    }`;
+    const { email, password, isMale, preferences, age } = this.state
+    const { data } = await fetch('http://localhost:4000/graphql', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json',
+      },
+      body: JSON.stringify({
+        query,
+        variables: {
+          newUser: {
+            email,
+            password,
+            preferences: preferences.map(preference => preference.toUpperCase()),
+            age,
+            gender: isMale ? 'MALE' : 'FEMALE'
+          }
+        },
+      })
+    }).then(res => res.json());
+    const { registerUser } = data;
+    if (registerUser) {
+      this.props.history.push('/main', { email: this.state.email });
+    }
   };
 
   isValidEmail = () => {
