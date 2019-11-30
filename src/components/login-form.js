@@ -47,12 +47,12 @@ export class LoginForm extends React.Component {
     })
   }
 
-  onClickSubmit() {
+  async onClickSubmit() {
     const query = `query getUser($user: UserInput) {
       userExists(user: $user)
     }`;
     const { email, password } = this.state
-    fetch('http://localhost:4000/graphql', {
+    const { data } = await fetch('http://localhost:4000/graphql', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -67,19 +67,18 @@ export class LoginForm extends React.Component {
           }
         },
       })
-    }).then(res => res.json()).then(({ data }) => {
-      const { userExists } = data;
-      if (userExists) {
-        this.props.history.push('/main', { email: this.state.email })
-      } else {
-        this.setState({
-          message: 'Login Failed, Please try with different credentials',
-          isSuccess: false
-        })
-        this.resetAlertMessage()
-        this.resetPassword()
-      }
-    });
+    }).then(res => res.json());
+    const { userExists } = data;
+    if (userExists) {
+      this.props.history.push('/main', { email: this.state.email })
+    } else {
+      this.setState({
+        message: 'Login Failed, Please try with different credentials',
+        isSuccess: false
+      })
+      this.resetAlertMessage()
+      this.resetPassword()
+    }
   }
 
   render() {
