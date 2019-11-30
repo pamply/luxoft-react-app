@@ -2,14 +2,6 @@
 import { Link } from 'react-router-dom'
 import React from 'react'
 import PropTypes from 'prop-types'
-
-const users = [
-  {
-    email: 'test@luxoft.com',
-    password: 'luxoft'
-  }
-]
-
 export class LoginForm extends React.Component {
   constructor(props) {
     super(props)
@@ -56,21 +48,38 @@ export class LoginForm extends React.Component {
   }
 
   onClickSubmit() {
+    const query = `query getUser($user: UserInput) {
+      userExists(user: $user)
+    }`;
     const { email, password } = this.state
-    const userFound = users.findIndex(
-      user => user.email === email && user.password === password
-    )
-
-    if (userFound !== -1) {
-      this.props.history.push('/main', { email: this.state.email })
-    } else {
-      this.setState({
-        message: 'Login Failed, Please try with different credentials',
-        isSuccess: false
+    fetch('http://localhost:4000/graphql', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json',
+      },
+      body: JSON.stringify({
+        query,
+        variables: {
+          user: {
+            email,
+            password
+          }
+        },
       })
-      this.resetAlertMessage()
-      this.resetPassword()
-    }
+    }).then(res => res.json()).then(({ data }) => {
+      const { userExists } = data;
+      if (userExists) {
+        this.props.history.push('/main', { email: this.state.email })
+      } else {
+        this.setState({
+          message: 'Login Failed, Please try with different credentials',
+          isSuccess: false
+        })
+        this.resetAlertMessage()
+        this.resetPassword()
+      }
+    });
   }
 
   render() {
