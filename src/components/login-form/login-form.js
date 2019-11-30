@@ -89,10 +89,10 @@ export class LoginForm extends React.Component {
               {this.state.message}
             </div>
           ) : (
-              <div className="alert alert-danger" role="alert">
-                {this.state.message}
-              </div>
-            ))}
+            <div className="alert alert-danger" role="alert">
+              {this.state.message}
+            </div>
+          ))}
         <form>
           <div className="form-group">
             <label htmlFor="exampleInputEmail1">Email address</label>
