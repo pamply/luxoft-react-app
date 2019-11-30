@@ -34,7 +34,8 @@ export class ResetPassword extends Component {
       })
     };
 
-    validateEntry = () => {
+    validateEntry = e => {
+      e.preventDefault()
       if (this.state.password.length > 2) {
         this.setState({ submitted: true })
       }
