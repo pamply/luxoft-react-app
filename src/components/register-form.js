@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 
 const listOfPreferences = ['books', 'music', 'movies', 'pets', 'sports']
 
@@ -235,4 +236,10 @@ export class RegisterForm extends React.Component {
       </>
     )
   }
+}
+
+RegisterForm.propTypes = {
+  history: PropTypes.shape({
+    push: PropTypes.func
+  })
 }

@@ -1,6 +1,8 @@
 /* eslint-disable react/no-unescaped-entities */
 import { Link } from 'react-router-dom'
 import React from 'react'
+import PropTypes from 'prop-types'
+
 const users = [
   {
     email: 'test@luxoft.com',
@@ -124,4 +126,10 @@ export class LoginForm extends React.Component {
       </>
     )
   }
+}
+
+LoginForm.propTypes = {
+  history: PropTypes.shape({
+    push: PropTypes.func
+  })
 }
