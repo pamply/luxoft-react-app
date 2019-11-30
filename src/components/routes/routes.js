@@ -1,8 +1,8 @@
 /* eslint-disable react/no-children-prop */
-import { RegisterForm } from './register-form'
-import { LoginForm } from './login-form'
-import { Main } from './main'
-import { NotFound } from './not-found'
+import { RegisterForm } from '../register-form/register-form'
+import { LoginForm } from '../login-form/login-form'
+import { Main } from '../main/main'
+import { NotFound } from '../not-found/not-found'
 import React from 'react'
 import { Switch, Route } from 'react-router-dom'
 
