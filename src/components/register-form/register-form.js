@@ -1,6 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import query from './register-form.gql'
+import { fetchGraphql } from '../../client-graphql';
 const listOfPreferences = ['books', 'music', 'movies', 'pets', 'sports']
 
 export class RegisterForm extends React.Component {
@@ -85,25 +86,16 @@ export class RegisterForm extends React.Component {
 
   saveUser = async () => {
     const { email, password, isMale, preferences, age } = this.state
-    const { data } = await fetch('http://localhost:4000/graphql', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'Accept': 'application/json',
-      },
-      body: JSON.stringify({
-        query,
-        variables: {
-          newUser: {
-            email,
-            password,
-            preferences: preferences.map(preference => preference.toUpperCase()),
-            age,
-            gender: isMale ? 'MALE' : 'FEMALE'
-          }
-        },
-      })
-    }).then(res => res.json());
+    const variables = {
+      newUser: {
+        email,
+        password,
+        preferences: preferences.map(preference => preference.toUpperCase()),
+        age,
+        gender: isMale ? 'MALE' : 'FEMALE'
+      }
+    }
+    const data = await fetchGraphql(query, variables)
     const { registerUser } = data;
     if (registerUser) {
       this.props.history.push('/main', { email: this.state.email });

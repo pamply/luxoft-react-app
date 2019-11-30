@@ -2,6 +2,7 @@
 import { Link } from 'react-router-dom'
 import React from 'react'
 import PropTypes from 'prop-types'
+import { fetchGraphql } from '../../client-graphql';
 import query from './login-form.gql';
 
 export class LoginForm extends React.Component {
@@ -51,22 +52,13 @@ export class LoginForm extends React.Component {
 
   async onClickSubmit() {
     const { email, password } = this.state
-    const { data } = await fetch('http://localhost:4000/graphql', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'Accept': 'application/json',
-      },
-      body: JSON.stringify({
-        query,
-        variables: {
-          user: {
-            email,
-            password
-          }
-        },
-      })
-    }).then(res => res.json());
+    const variables = {
+      user: {
+        email,
+        password
+      }
+    }
+    const data = await fetchGraphql(query, variables)
     const { userExists } = data;
     if (userExists) {
       this.props.history.push('/main', { email: this.state.email })
