@@ -4,7 +4,7 @@ import PropTypes from 'prop-types'
 const listOfPreferences = ['books', 'music', 'movies', 'pets', 'sports']
 
 export class RegisterForm extends React.Component {
-  constructor (props) {
+  constructor(props) {
     super(props)
     this.fillAgesDropdown = this.fillAgesDropdown.bind(this)
     this.state = {
@@ -71,7 +71,7 @@ export class RegisterForm extends React.Component {
     })
   };
 
-  fillAgesDropdown () {
+  fillAgesDropdown() {
     const options = []
     for (let i = 18; i < 100; i++) {
       options.push(
@@ -125,7 +125,7 @@ export class RegisterForm extends React.Component {
     )
   };
 
-  render () {
+  render() {
     return (
       <>
         <form>
