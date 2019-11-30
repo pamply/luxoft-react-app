@@ -1,6 +1,6 @@
 /* eslint-disable react/no-children-prop */
-import { RegisterForm } from './register-form'
-import { LoginForm } from './login-form'
+import { RegisterForm } from './register-form/register-form'
+import { LoginForm } from './login-form/login-form'
 import { Main } from './main'
 import { NotFound } from './not-found'
 import React from 'react'

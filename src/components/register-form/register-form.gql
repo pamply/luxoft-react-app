@@ -1,0 +1,3 @@
+mutation registerUser($newUser: NewUserInput) {
+	registerUser(newUser: $newUser)
+}

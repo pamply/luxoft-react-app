@@ -1,0 +1,3 @@
+query getUser($user: UserInput) {
+	userExists(user: $user)
+}

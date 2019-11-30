@@ -2,6 +2,8 @@
 import { Link } from 'react-router-dom'
 import React from 'react'
 import PropTypes from 'prop-types'
+import query from './login-form.gql';
+
 export class LoginForm extends React.Component {
   constructor(props) {
     super(props)
@@ -48,9 +50,6 @@ export class LoginForm extends React.Component {
   }
 
   async onClickSubmit() {
-    const query = `query getUser($user: UserInput) {
-      userExists(user: $user)
-    }`;
     const { email, password } = this.state
     const { data } = await fetch('http://localhost:4000/graphql', {
       method: 'POST',
@@ -90,10 +89,10 @@ export class LoginForm extends React.Component {
               {this.state.message}
             </div>
           ) : (
-            <div className="alert alert-danger" role="alert">
-              {this.state.message}
-            </div>
-          ))}
+              <div className="alert alert-danger" role="alert">
+                {this.state.message}
+              </div>
+            ))}
         <form>
           <div className="form-group">
             <label htmlFor="exampleInputEmail1">Email address</label>

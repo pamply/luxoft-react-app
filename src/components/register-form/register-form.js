@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-
+import query from './register-form.gql'
 const listOfPreferences = ['books', 'music', 'movies', 'pets', 'sports']
 
 export class RegisterForm extends React.Component {
@@ -84,9 +84,6 @@ export class RegisterForm extends React.Component {
   }
 
   saveUser = async () => {
-    const query = `mutation registerUser($newUser: NewUserInput) {
-      registerUser(newUser: $newUser)
-    }`;
     const { email, password, isMale, preferences, age } = this.state
     const { data } = await fetch('http://localhost:4000/graphql', {
       method: 'POST',

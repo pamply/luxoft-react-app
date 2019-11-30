@@ -11,6 +11,7 @@ module.exports = {
   devtool: 'source-map',
   module: {
     rules: [
+      { test: /\.gql$/, use: 'raw-loader' },
       {
         test: /\.m?jsx?$/,
         exclude: /(node_modules|bower_components)/,
