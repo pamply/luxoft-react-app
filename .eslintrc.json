@@ -8,10 +8,7 @@
       "version": "detect"
     }
   },
-  "extends": [
-    "plugin:react/recommended",
-    "eslint:recommended"
-  ],
+  "extends": ["plugin:react/recommended", "eslint:recommended"],
   "globals": {
     "Atomics": "readonly",
     "SharedArrayBuffer": "readonly"
@@ -23,12 +20,11 @@
     "ecmaVersion": 2018,
     "sourceType": "module"
   },
-  "plugins": [
-    "react"
-  ],
+  "plugins": ["react"],
   "rules": {
     "react/jsx-uses-react": "error",
     "react/jsx-uses-vars": "error",
+    "react/prop-types": 0,
     "indent": ["error", 2]
   }
 }
