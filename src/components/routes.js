@@ -5,6 +5,8 @@ import { Main } from './main'
 import { NotFound } from './not-found'
 import React from 'react'
 import { Switch, Route } from 'react-router-dom'
+import { SecretSanta } from './secret-santa'
+import { ResetPassword } from './resetpassword-form'
 
 export const Routes = () => (
   <Switch>
@@ -18,6 +20,16 @@ export const Routes = () => (
       children={props => <RegisterForm {...props} />}
       exact
       path="/register"
+    />
+    <Route
+      children={props => <ResetPassword {...props} />}
+      exact
+      path="/reset"
+    />
+    <Route
+      children={props => <SecretSanta {...props} />}
+      exact
+      path="/secret-santa"
     />
     <Route children={props => <Main {...props} />} exact path="/main" />
     <Route path="*"><NotFound /></Route>
