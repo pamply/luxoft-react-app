@@ -1,19 +1,11 @@
-import React from "react";
+import React from 'react'
 
 export const Main = props => {
-    let welcomeMsg;
+  let welcomeMsg = 'Please log in or create a new account';
 
-    if (props.history) {
-        if (props.history.location.state) {
-            const { email } = props.history.location.state;
-            welcomeMsg = `Hello ${email}`
-        } else {
-            welcomeMsg = "Please log in or create a new account"
-        }
+  if (props.history && props.history.location.state) {
+    const { email } = props.history.location.state
+        welcomeMsg = `Hello ${email}`
     }
-    return <div>{welcomeMsg}</div>;
-};
-
-
-
-
+  return <div>{welcomeMsg}</div>
+}
