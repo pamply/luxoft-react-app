@@ -1,7 +1,7 @@
 import React from 'react'
 import { Input } from "./shared/input";
 import { Select } from "./shared/select";
-import { BinaryCheckRadio } from './shared/binaryCheckRadio';
+import { BinaryCheckRadio } from './shared/binary-check-radio';
 import { Checkbox } from './shared/checkbox';
 
 const listOfPreferences = ['books', 'music', 'movies', 'pets', 'sports']
@@ -161,7 +161,7 @@ export class RegisterForm extends React.Component {
             option2="Female"
             type="radio"
             label="Select gender"
-            status={this.state.isMale} />
+            option1Checked={this.state.isMale} />
           <button
             disabled={!this.isValid()}
             onClick={this.saveUser}
