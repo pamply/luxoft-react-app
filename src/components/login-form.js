@@ -8,7 +8,7 @@ const users = [
   }
 ]
 export class LoginForm extends React.Component {
-  constructor (props) {
+  constructor(props) {
     super(props)
 
     this.state = {
@@ -24,7 +24,7 @@ export class LoginForm extends React.Component {
     this.resetPassword = this.resetPassword.bind(this)
   }
 
-  resetAlertMessage () {
+  resetAlertMessage() {
     setTimeout(() => {
       this.setState({
         message: ''
@@ -32,34 +32,36 @@ export class LoginForm extends React.Component {
     }, 1000)
   }
 
-  resetPassword () {
+  resetPassword() {
     this.setState({
       password: ''
     })
   }
 
-  onChangeEmail (e) {
+  onChangeEmail(e) {
     const { value: email } = e.target
     this.setState({
       email
     })
   }
 
-  onChangePassword (e) {
+  onChangePassword(e) {
     const { value: password } = e.target
     this.setState({
       password
     })
   }
 
-  onClickSubmit () {
+  onClickSubmit() {
     const { email, password } = this.state
     const userFound = users.findIndex(
       user => user.email === email && user.password === password
     )
 
     if (userFound !== -1) {
-      this.props.history.push('/main', { email: this.state.email })
+      // eslint-disable-next-line no-undef
+      sessionStorage.setItem('userLogged', email)
+      this.props.history.push('/main', { email })
     } else {
       this.setState({
         message: 'Login Failed, Please try with different credentials',
@@ -70,19 +72,20 @@ export class LoginForm extends React.Component {
     }
   }
 
-  render () {
+  render() {
     return (
       <>
+        <h1>Login</h1>
         {this.state.message &&
           (this.state.isSuccess ? (
             <div className="alert alert-success" role="alert">
               {this.state.message}
             </div>
           ) : (
-            <div className="alert alert-danger" role="alert">
-              {this.state.message}
-            </div>
-          ))}
+              <div className="alert alert-danger" role="alert">
+                {this.state.message}
+              </div>
+            ))}
         <form>
           <div className="form-group">
             <label htmlFor="exampleInputEmail1">Email address</label>
@@ -109,6 +112,7 @@ export class LoginForm extends React.Component {
               onChange={this.onChangePassword}
               value={this.state.password}
             />
+            <small className="form-text text-muted"> <Link to='/reset' >Reset Password</Link></small>
           </div>
           <div className="form-group">
             <Link to='/register' >I'm a new User</Link>

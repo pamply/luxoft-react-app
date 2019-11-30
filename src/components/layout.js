@@ -1,6 +1,7 @@
 import Logo from '../assets/logo.png'
 import React from 'react'
 import { Routes } from './routes'
+
 const NavBar = () => (
   <nav
     className="navbar navbar-expand-lg navbar"
