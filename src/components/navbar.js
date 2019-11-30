@@ -4,8 +4,6 @@ import { Link } from "react-router-dom";
 import { withRouter } from 'react-router-dom';
 
 export const Navbar = props => {
-  console.log(props.history.location.pathname);
-
   return (
     <nav
       className="navbar navbar-expand-lg navbar"
