@@ -1,22 +1,25 @@
-import React, {Component, createContext} from "react";
+import React, { Component, createContext } from 'react'
 
-export const LogStatusContext = createContext();
+export const LogStatusContext = createContext()
 
 export class LogProvider extends Component {
-    state = {isLoggedIn: false};
+    state = { isLoggedIn: false };
 
-    toggleLoggedStatus = () => {
-        this.setState(state => ({isLoggedIn: !state.isLoggedIn}))
+    LogInStatus = () => {
+      this.setState({ isLoggedIn: true })
     };
 
-    render() {
-        return (
-            <LogStatusContext.Provider
-                value={{status: this.state.isLoggedIn, toggleLogStatus: this.toggleLoggedStatus}}
-            >
-                {this.props.children}
-            </LogStatusContext.Provider>
-        )
+    LogOutStatus = () => {
+      this.setState({ isLoggedIn: false })
+    };
+
+    render () {
+      return (
+        <LogStatusContext.Provider
+          value={{ status: this.state.isLoggedIn, LogInStatus: this.LogInStatus, LogOutStatus: this.LogOutStatus }}
+        >
+          {this.props.children}
+        </LogStatusContext.Provider>
+      )
     }
 }
-
