@@ -6,20 +6,28 @@ import { NotFound } from './not-found'
 import React from 'react'
 import { Switch, Route } from 'react-router-dom'
 
-export const Routes = () => (
-  <Switch>
-    <Route children={props => <LoginForm {...props} />} exact path="/" />
-    <Route
-      children={props => <RegisterForm {...props} />}
-      exact
-      path="/register"
-    />
-    <Route
-      children={props => <RegisterForm {...props} />}
-      exact
-      path="/register"
-    />
-    <Route children={props => <Main {...props} />} exact path="/main" />
-    <Route path="*"><NotFound /></Route>
-  </Switch>
-)
+export const Routes = (props) => {
+  const { setUserLoged } = props
+
+  return (
+    <Switch>
+      <Route
+        component={(props) => <LoginForm {...props} setUserLoged={setUserLoged} />}
+        exact
+        path="/"
+      />
+      <Route
+        children={props => <RegisterForm {...props} />}
+        exact
+        path="/register"
+      />
+      <Route
+        children={props => <RegisterForm {...props} />}
+        exact
+        path="/register"
+      />
+      <Route children={props => <Main {...props} />} exact path="/main" />
+      <Route path="*"><NotFound /></Route>
+    </Switch>
+  )
+}

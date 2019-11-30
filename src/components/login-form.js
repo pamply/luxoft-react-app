@@ -24,6 +24,13 @@ export class LoginForm extends React.Component {
     this.resetPassword = this.resetPassword.bind(this)
   }
 
+  componentDidMount () {
+    console.log(this.props)
+    //  console.log('Component did mount')
+    //  const { setUserLoged } = this.props
+    //  setUserLoged(false)
+  }
+
   resetAlertMessage () {
     setTimeout(() => {
       this.setState({
@@ -60,6 +67,7 @@ export class LoginForm extends React.Component {
 
     if (userFound !== -1) {
       this.props.history.push('/main', { email: this.state.email })
+      this.props.setUserLoged(true)
     } else {
       this.setState({
         message: 'Login Failed, Please try with different credentials',
@@ -71,6 +79,7 @@ export class LoginForm extends React.Component {
   }
 
   render () {
+    console.log(this.props)
     return (
       <>
         {this.state.message &&
