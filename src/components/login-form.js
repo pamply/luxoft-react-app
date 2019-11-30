@@ -1,78 +1,78 @@
-/* eslint-disable react/no-unescaped-entities */
-import { Link } from 'react-router-dom'
-import React from 'react'
+import React from "react";
+import {Link} from "react-router-dom";
+
 const users = [
   {
-    email: 'test@luxoft.com',
-    password: 'luxoft'
+    email: "test@luxoft.com",
+    password: "luxoft"
   }
-]
+];
 export class LoginForm extends React.Component {
-  constructor (props) {
-    super(props)
+  constructor(props) {
+    super(props);
 
     this.state = {
-      email: '',
-      password: '',
-      message: '',
+      email: "",
+      password: "",
+      message: "",
       isSuccess: true
-    }
-    this.onChangeEmail = this.onChangeEmail.bind(this)
-    this.onChangePassword = this.onChangePassword.bind(this)
-    this.onClickSubmit = this.onClickSubmit.bind(this)
-    this.resetAlertMessage = this.resetAlertMessage.bind(this)
-    this.resetPassword = this.resetPassword.bind(this)
+    };
+    this.onChangeEmail = this.onChangeEmail.bind(this);
+    this.onChangePassword = this.onChangePassword.bind(this);
+    this.onClickSubmit = this.onClickSubmit.bind(this);
+    this.resetAlertMessage = this.resetAlertMessage.bind(this);
+    this.resetPassword = this.resetPassword.bind(this);
   }
 
-  resetAlertMessage () {
+  resetAlertMessage() {
     setTimeout(() => {
       this.setState({
-        message: ''
-      })
-    }, 1000)
+        message: ""
+      });
+    }, 1000);
   }
 
-  resetPassword () {
+  resetPassword() {
     this.setState({
-      password: ''
-    })
+      password: ""
+    });
   }
 
-  onChangeEmail (e) {
-    const { value: email } = e.target
+  onChangeEmail(e) {
+    const { value: email } = e.target;
     this.setState({
       email
-    })
+    });
   }
 
-  onChangePassword (e) {
-    const { value: password } = e.target
+  onChangePassword(e) {
+    const { value: password } = e.target;
     this.setState({
       password
-    })
+    });
   }
 
-  onClickSubmit () {
-    const { email, password } = this.state
+  onClickSubmit() {
+    const { email, password } = this.state;
     const userFound = users.findIndex(
       user => user.email === email && user.password === password
-    )
+    );
 
     if (userFound !== -1) {
-      this.props.history.push('/main', { email: this.state.email })
+      this.props.history.push("/main", { email: this.state.email });
     } else {
       this.setState({
-        message: 'Login Failed, Please try with different credentials',
+        message: `Login Failed, Please try with different credentials`,
         isSuccess: false
-      })
-      this.resetAlertMessage()
-      this.resetPassword()
+      });
+      this.resetAlertMessage();
+      this.resetPassword();
     }
   }
 
-  render () {
+  render() {
     return (
-      <>
+      <section className="login-form">
         {this.state.message &&
           (this.state.isSuccess ? (
             <div className="alert alert-success" role="alert">
@@ -110,8 +110,13 @@ export class LoginForm extends React.Component {
               value={this.state.password}
             />
           </div>
-          <div className="form-group">
-            <Link to='/register' >I'm a new User</Link>
+          <div className="form-group d-flex justify-content-around">
+            <Link to="/register">
+              I'm a new User
+            </Link>
+            <Link to="/reset-password">
+              Reset password
+            </Link>
           </div>
           <button
             type="button"
@@ -121,7 +126,7 @@ export class LoginForm extends React.Component {
             Submit
           </button>
         </form>
-      </>
-    )
+      </section>
+    );
   }
 }

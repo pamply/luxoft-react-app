@@ -1,0 +1,22 @@
+body {
+    background-color: white;
+}
+
+.content {
+    color: #6c757d;
+    padding: 50px 100px;
+}
+
+.form-container {
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+.hidden {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.bg-light {
+    min-height: 500px;
+}

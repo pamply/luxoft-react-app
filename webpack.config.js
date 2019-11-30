@@ -18,7 +18,7 @@ module.exports = {
       },
       {
         test: /\.(css)|(scss)$/,
-        use: ['style-loader', 'css-loader']
+        use: ['style-loader', 'css-loader', 'sass-loader']
       },
       {
         test: /\.(png|svg|jpg|gif)$/,
@@ -27,8 +27,8 @@ module.exports = {
     ]
   },
   devServer: {
+    historyApiFallback: true,
     contentBase: path.join(__dirname, 'dist'),
-    port: SERVER_PORT,
-    historyApiFallback: true
+    port: SERVER_PORT
   }
 }

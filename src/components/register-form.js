@@ -1,4 +1,5 @@
 import React from 'react'
+import { LogStatusContext } from './Contexts/LogStatusContext'
 
 const listOfPreferences = ['books', 'music', 'movies', 'pets', 'sports']
 
@@ -18,23 +19,41 @@ export class RegisterForm extends React.Component {
 
   onChangeEmail = e => {
     const { value: email } = e.target
-    this.setState({
-      email
-    })
+    this.setState(
+      {
+        email
+      },
+      () => {
+        const newClass = this.isValidEmail() ? 'is-valid' : 'is-invalid'
+        this.setState({ mailClassName: newClass })
+      }
+    )
   };
 
   onChangePassword = e => {
     const { value: password } = e.target
-    this.setState({
-      password
-    })
+    this.setState(
+      {
+        password
+      },
+      () => {
+        const newClass = this.isValidPassword() ? 'is-valid' : 'is-invalid'
+        this.setState({ passwordClassName: newClass })
+      }
+    )
   };
 
   onChangeConfirmPassword = e => {
     const { value: passwordConfirm } = e.target
-    this.setState({
-      passwordConfirm
-    })
+    this.setState(
+      {
+        passwordConfirm
+      },
+      () => {
+        const newClass = this.isValidPassword() ? 'is-valid' : 'is-invalid'
+        this.setState({ passwordClassName: newClass })
+      }
+    )
   };
 
   onChangePreference = (e, preference) => {
@@ -125,18 +144,23 @@ export class RegisterForm extends React.Component {
   };
 
   render () {
+    const { mailClassName, passwordClassName, email, preferences, age, isMale } = this.state
     return (
       <>
+        {this.state.isSuccess && (
+          <div className="alert alert-success" role="alert">
+            Successfully saved
+          </div>
+        )}
         <form>
           <div className="form-group">
             <label>Email address</label>
             <input
               type="email"
-              className={`form-control ${
-                this.isValidEmail() ? 'is-valid' : 'is-invalid'
-                }`}
+              autoComplete="on"
+              className={`form-control ${mailClassName}`}
               placeholder="Enter email"
-              value={this.state.email}
+              value={email}
               onChange={this.onChangeEmail}
             />
             <div className="invalid-feedback">
@@ -147,9 +171,8 @@ export class RegisterForm extends React.Component {
             <label>Password</label>
             <input
               type="password"
-              className={`form-control ${
-                this.isValidPassword() ? 'is-valid' : 'is-invalid'
-                }`}
+              autoComplete="on"
+              className={`form-control ${passwordClassName}`}
               placeholder="Password"
               value={this.password}
               onChange={this.onChangePassword}
@@ -159,9 +182,8 @@ export class RegisterForm extends React.Component {
             <label>Confirm password</label>
             <input
               type="password"
-              className={`form-control ${
-                this.isValidPassword() ? 'is-valid' : ''
-                }`}
+              autoComplete="on"
+              className={`form-control ${passwordClassName}`}
               placeholder="Confirm password"
               value={this.passwordConfirm}
               onChange={this.onChangeConfirmPassword}
@@ -179,7 +201,7 @@ export class RegisterForm extends React.Component {
                   value={preference}
                   onChange={e => this.onChangePreference(e, preference)}
                   checked={
-                    !!this.state.preferences.find(pref => preference === pref)
+                    !!preferences.find(pref => preference === pref)
                   }
                 />
                 <label className="form-check-label">{preference}</label>
@@ -191,13 +213,38 @@ export class RegisterForm extends React.Component {
             <label>Select age</label>
             <select
               onChange={this.onChangeAge}
-              value={this.state.age}
+              value={age}
               className="custom-select"
             >
               {this.fillAgesDropdown()}
             </select>
           </div>
 
+          <div className="form-group">
+            <label>Select gender</label>
+            <div
+              className="custom-control custom-radio"
+              onClick={e => this.onChangeGender(e, true)}
+            >
+              <input
+                type="radio"
+                className="custom-control-input"
+                checked={isMale}
+              />
+              <label className="custom-control-label">Male</label>
+            </div>
+            <div
+              className="custom-control custom-radio"
+              onClick={e => this.onChangeGender(e, false)}
+            >
+              <input
+                type="radio"
+                className="custom-control-input"
+                checked={!isMale}
+              />
+              <label className="custom-control-label">Female</label>
+            </div>
+          </div>
           <div className="form-group">
             <label>Select gender</label>
             <div
@@ -223,14 +270,21 @@ export class RegisterForm extends React.Component {
               <label className="custom-control-label">Female</label>
             </div>
           </div>
-          <button
-            disabled={!this.isValid()}
-            onClick={this.saveUser}
-            type="button"
-            className="btn btn-primary"
-          >
-            Save
-          </button>
+          <LogStatusContext.Consumer>
+            {({ LogInStatus }) => (
+              <button
+                disabled={!this.isValid()}
+                onClick={() => {
+                  this.saveUser()
+                  LogInStatus()
+                }}
+                type="button"
+                className="btn btn-primary"
+              >
+                Save
+              </button>
+            )}
+          </LogStatusContext.Consumer>
         </form>
       </>
     )

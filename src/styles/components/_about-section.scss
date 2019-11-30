@@ -1,0 +1,25 @@
+.about-section {
+    .header {
+        margin-bottom: 35px;
+
+        &:nth-child(n+2) {
+            margin-top: 15px;
+        }
+    }
+
+    .gnral-info {
+        text-align: justify;
+    }
+
+    .about-pic {
+        margin: 55px 0 ;
+
+        img {
+        max-width: 100%;
+        }
+
+        .caption {
+            font-size: 12px;
+        }
+    }
+}
