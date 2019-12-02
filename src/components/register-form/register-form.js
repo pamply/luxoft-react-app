@@ -3,7 +3,7 @@ import React from 'react'
 const listOfPreferences = ['books', 'music', 'movies', 'pets', 'sports']
 
 export class RegisterForm extends React.Component {
-  constructor (props) {
+  constructor(props) {
     super(props)
     this.fillAgesDropdown = this.fillAgesDropdown.bind(this)
     this.state = {
@@ -70,7 +70,7 @@ export class RegisterForm extends React.Component {
     })
   };
 
-  fillAgesDropdown () {
+  fillAgesDropdown() {
     const options = []
     for (let i = 18; i < 100; i++) {
       options.push(
@@ -124,7 +124,7 @@ export class RegisterForm extends React.Component {
     )
   };
 
-  render () {
+  render() {
     return (
       <>
         <form>
@@ -208,6 +208,7 @@ export class RegisterForm extends React.Component {
                 type="radio"
                 className="custom-control-input"
                 checked={this.state.isMale}
+                readOnly
               />
               <label className="custom-control-label">Male</label>
             </div>
@@ -219,6 +220,7 @@ export class RegisterForm extends React.Component {
                 type="radio"
                 className="custom-control-input"
                 checked={!this.state.isMale}
+                readOnly
               />
               <label className="custom-control-label">Female</label>
             </div>
