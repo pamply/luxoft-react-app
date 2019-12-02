@@ -21,6 +21,11 @@ export const Routes = () => {
               exact
               path="/register"
             />
+            <Route
+              children={props => <LoginForm {...props} />}
+              exact
+              path="/resetPassword"
+            />
             <Route children={props => <Main {...props} />} exact path="/main" />
             <Route path="*"><NotFound /></Route>
           </Switch>

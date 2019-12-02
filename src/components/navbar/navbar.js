@@ -17,7 +17,7 @@ export const NavBar = props => (
           <h6 className="logout-button-navbar mt-3 mr-3">Logout</h6>
         </Link>
         :
-        (props.pathname !== '/') ?
+        (props.pathname !== '/' && props.pathname !== '/resetPassword') ?
           <Link to="/">
             <h6 className="logout-button-navbar mt-3 mr-3">Login Page</h6>
           </Link>
