@@ -12,17 +12,17 @@ export const NavBar = props => (
       <a className="navbar-brand" href="#">
         <img src={Logo} height="50" alt="" />
       </a>
-      {(props.history.location.state) ?
+      {(props.state) ?
         <Link to="/">
           <h6 className="logout-button-navbar mt-3 mr-3">Logout</h6>
         </Link>
         :
-        (props.history.location.pathname !== '/') ?
+        (props.pathname !== '/') ?
           <Link to="/">
-            <h6 className="logout-button-navbar mt-3 mr-3">Go to Login Page</h6>
+            <h6 className="logout-button-navbar mt-3 mr-3">Login Page</h6>
           </Link>
           : null
       }
     </div>
   </nav>
-)
+);
