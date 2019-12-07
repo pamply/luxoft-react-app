@@ -1,6 +1,6 @@
 import React from "react";
 
-export const About = () => {
+export default const About = () => {
   return (
     <div>
       <h3>Secret Santa</h3>

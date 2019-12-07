@@ -7,7 +7,7 @@ const users = [
     password: 'luxoft'
   }
 ]
-export class LoginForm extends React.Component {
+export default class LoginForm extends React.Component {
   constructor(props) {
     super(props)
 

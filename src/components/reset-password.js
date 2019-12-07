@@ -7,7 +7,7 @@ const users = [
     password: "luxoft"
   }
 ];
-export class ResetPassword extends React.Component {
+export default class ResetPassword extends React.Component {
   constructor(props) {
     super(props);
 
