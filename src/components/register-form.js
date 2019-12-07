@@ -135,7 +135,7 @@ export class RegisterForm extends React.Component {
               type="email"
               className={`form-control ${
                 this.isValidEmail() ? 'is-valid' : 'is-invalid'
-              }`}
+                }`}
               placeholder="Enter email"
               value={this.state.email}
               onChange={this.onChangeEmail}
@@ -150,7 +150,7 @@ export class RegisterForm extends React.Component {
               type="password"
               className={`form-control ${
                 this.isValidPassword() ? 'is-valid' : 'is-invalid'
-              }`}
+                }`}
               placeholder="Password"
               value={this.password}
               onChange={this.onChangePassword}
@@ -162,7 +162,7 @@ export class RegisterForm extends React.Component {
               type="password"
               className={`form-control ${
                 this.isValidPassword() ? 'is-valid' : ''
-              }`}
+                }`}
               placeholder="Confirm password"
               value={this.passwordConfirm}
               onChange={this.onChangeConfirmPassword}
