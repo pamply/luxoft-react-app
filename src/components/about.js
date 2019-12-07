@@ -1,6 +1,6 @@
 import React from "react";
 
-export default const About = () => {
+const About = () => {
   return (
     <div>
       <h3>Secret Santa</h3>
@@ -13,3 +13,5 @@ export default const About = () => {
       <img src="https://i.pinimg.com/564x/cd/6e/01/cd6e01cc035f1422da18b8480a366cf2.jpg" className="img-fluid" alt="Santa"></img>
     </div>);
 };
+
+export default About;
