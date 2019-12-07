@@ -2,7 +2,7 @@ import React from "react";
 
 export const About = () => {
   return (
-    <>
+    <div>
       <h3>Secret Santa</h3>
       <p>
         The basic concept of the Secret Santa game is simple.
@@ -11,5 +11,5 @@ export const About = () => {
         If they can't guess, their Secret Santa eventually confesses.
       </p>
       <img src="https://i.pinimg.com/564x/cd/6e/01/cd6e01cc035f1422da18b8480a366cf2.jpg" className="img-fluid" alt="Santa"></img>
-    </>);
+    </div>);
 };
