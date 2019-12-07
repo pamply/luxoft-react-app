@@ -1,25 +1,22 @@
 /* eslint-disable react/no-children-prop */
-import { RegisterForm } from './register-form'
-import { LoginForm } from './login-form'
-import { Main } from './main'
-import { NotFound } from './not-found'
-import React from 'react'
+import React, { Suspense, lazy } from 'react'
 import { Switch, Route } from 'react-router-dom'
 
+const RegisterForm = lazy(() => import('./register-form'));
+const Main = lazy(() => import('./main'));
+const NotFound = lazy(() => import('./not-found'));
+const LoginForm = lazy(() => import('./login-form'));
+
 export const Routes = () => (
-  <Switch>
-    <Route children={props => <LoginForm {...props} />} exact path="/" />
-    <Route
-      children={props => <RegisterForm {...props} />}
-      exact
-      path="/register"
-    />
-    <Route
-      children={props => <RegisterForm {...props} />}
-      exact
-      path="/register"
-    />
-    <Route children={props => <Main {...props} />} exact path="/main" />
-    <Route path="*"><NotFound /></Route>
-  </Switch>
+  <Suspense fallback={<div>Loading...</div>}>
+    <Switch>
+      <Route component={LoginForm} exact path="/" />
+      <Route
+        component={RegisterForm} exact
+        path="/register"
+      />
+      <Route component={Main} exact path="/main" />
+      <Route component={NotFound} path="*" />
+    </Switch>
+  </Suspense>
 )
