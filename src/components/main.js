@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-export const Main = props => {
+export default Main = props => {
   const { email } = props.history.location.state
   return <div>Hello {email}</div>
 }
