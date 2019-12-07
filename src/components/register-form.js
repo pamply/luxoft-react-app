@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 
 const listOfPreferences = ['books', 'music', 'movies', 'pets', 'sports']
 
-export class RegisterForm extends React.Component {
+export default class RegisterForm extends React.Component {
   constructor(props) {
     super(props)
     this.fillAgesDropdown = this.fillAgesDropdown.bind(this)

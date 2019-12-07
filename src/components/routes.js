@@ -1,25 +1,33 @@
 /* eslint-disable react/no-children-prop */
-import { RegisterForm } from './register-form'
-import { LoginForm } from './login-form'
-import { Main } from './main'
-import { NotFound } from './not-found'
-import React from 'react'
+import React, { Suspense, lazy } from 'react'
 import { Switch, Route } from 'react-router-dom'
+
+const LoginForm = lazy(() => import('./login-form'))
+const RegisterForm = lazy(() => import('./register-form'));
+const Main = lazy(() => import('./main'));
+const NotFound = lazy(() => import('./not-found'));
 
 export const Routes = () => (
   <Switch>
-    <Route children={props => <LoginForm {...props} />} exact path="/" />
-    <Route
-      children={props => <RegisterForm {...props} />}
-      exact
-      path="/register"
-    />
-    <Route
-      children={props => <RegisterForm {...props} />}
-      exact
-      path="/register"
-    />
-    <Route children={props => <Main {...props} />} exact path="/main" />
-    <Route path="*"><NotFound /></Route>
+    <Route exact path="/">
+      <Suspense fallback={"loading..."}>
+        <LoginForm />
+      </Suspense>
+    </Route>
+    <Route exact path="/register">
+      <Suspense fallback={"loading..."}>
+        <RegisterForm />
+      </Suspense>
+    </Route>
+    <Route exact path="/main">
+      <Suspense fallback={"loading..."}>
+        <Main />
+      </Suspense>
+    </Route>
+    <Route exact path="*">
+      <Suspense fallback={"loading..."}>
+        <NotFound />
+      </Suspense>
+    </Route>
   </Switch>
 )
